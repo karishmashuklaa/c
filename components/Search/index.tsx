@@ -30,7 +30,7 @@ const UserSearch: React.FC<UserSearchProps> = ({ inputValue, handleInputChange, 
           <li
             key={user.id}
             className={`px-6 font-sans text-sm py-2 cursor-pointer transition duration-300 hover:bg-gray-200 flex items-center space-x-4 ${
-              focusedUserIndex === index ? "bg-blue-100" : ""
+              focusedUserIndex === index ? "bg-gray-200" : ""
             }`}
             onClick={(e) => {
               e.preventDefault();
