@@ -3,9 +3,9 @@
 View it live here: https://chip-drop.vercel.app/
 
 ### Local Setup
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Run the project: `npm run dev`
+1. Clone the repository.
+2. Install dependencies: `npm install`.
+3. Run the project: `npm run dev`.
 
 ### Specifications
 
@@ -17,6 +17,7 @@ View it live here: https://chip-drop.vercel.app/
 6. When the input is blank and the user presses backspace, the last chip (for example, Nick Giannopoulos) should get highlighted and on again pressing backspace it should get deleted.
 
 ### Keyboard Shortcuts
-1. `Esc` to hide dropdown
-2. `Enter` to select first option from dropdown
-3. `Consecutive Backspaces` to delete last selected option
+1. `Esc` to hide dropdown.
+2. `Enter` to select option from dropdown.
+3. `Arrow Up` and `Arrow Down` to navigate the items of the dropdown.
+4. `Consecutive Backspaces` to delete last selected option.
