@@ -10,9 +10,10 @@ interface UserSearchProps {
     filteredUsers: UserType[];
     handleUserAction: (user: UserType, action: "add" | "remove") => void;
     setDropdownOpen: (value: boolean) => void;
+    focusedUserIndex: number;
 }
 
-const UserSearch: React.FC<UserSearchProps> = ({ inputValue, handleInputChange, handleKeyDown, isDropdownOpen, filteredUsers, handleUserAction, setDropdownOpen }) => (
+const UserSearch: React.FC<UserSearchProps> = ({ inputValue, handleInputChange, handleKeyDown, isDropdownOpen, filteredUsers, handleUserAction, setDropdownOpen, focusedUserIndex }) => (
   <div>
     <input
       className="outline outline-0"
@@ -25,10 +26,12 @@ const UserSearch: React.FC<UserSearchProps> = ({ inputValue, handleInputChange, 
     />
     {isDropdownOpen && (
       <ul className="bg-white border rounded shadow-2xl max-h-80 overflow-auto absolute">
-        {filteredUsers.map((user) => (
+        {filteredUsers.map((user, index) => (
           <li
             key={user.id}
-            className="px-6 font-sans text-sm py-2 cursor-pointer transition duration-300 hover:bg-gray-200 flex items-center space-x-4"
+            className={`px-6 font-sans text-sm py-2 cursor-pointer transition duration-300 hover:bg-gray-200 flex items-center space-x-4 ${
+              focusedUserIndex === index ? "bg-blue-100" : ""
+            }`}
             onClick={(e) => {
               e.preventDefault();
               handleUserAction(user, "add");
