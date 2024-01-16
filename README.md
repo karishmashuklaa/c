@@ -1,6 +1,6 @@
 # Chip Component
 
-View it live here: 
+View it live here: https://chip-drop.vercel.app/
 
 ### Local Setup
 1. Clone the repository
