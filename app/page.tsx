@@ -16,6 +16,8 @@ export default function Home() {
   const [lastSelectedIndex, setLastSelectedIndex] = useState<null | number>(
     null
   );
+  const [focusedUserIndex, setFocusedUserIndex] = useState(-1);
+
 
   useEffect(() => {
     setMatchedUsers(users);
@@ -32,6 +34,17 @@ export default function Home() {
         setSelectedUsers((prevUsers) => prevUsers.slice(0, -1));
       } else {
         setLastSelectedIndex(selectedUsers.length - 1);
+      }
+    }
+    else if (isDropdownOpen) {
+      if (e.key === "ArrowDown") {
+        setFocusedUserIndex((prevIndex) =>
+          Math.min(prevIndex + 1, matchedUsers.length - 1)
+        );
+      } else if (e.key === "ArrowUp") {
+        setFocusedUserIndex((prevIndex) => Math.max(prevIndex - 1, -1));
+      } else if (e.key === "Enter" && focusedUserIndex !== -1) {
+        handleUserAction(matchedUsers[focusedUserIndex], "add");
       }
     }
   };
@@ -89,6 +102,7 @@ export default function Home() {
             filteredUsers={matchedUsers}
             handleUserAction={handleUserAction}
             setDropdownOpen={setDropdownOpen}
+            focusedUserIndex={focusedUserIndex}
           />
         </ul>
       </div>
