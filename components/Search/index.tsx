@@ -3,30 +3,30 @@ import Image from "next/image";
 import { User as UserType } from "@/types";
 
 interface UserSearchProps {
-    inputValue: string;
+    searchQuery: string;
     handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
     isDropdownOpen: boolean;
-    filteredUsers: UserType[];
+    matchedUsers: UserType[];
     handleUserAction: (user: UserType, action: "add" | "remove") => void;
     setDropdownOpen: (value: boolean) => void;
     focusedUserIndex: number;
 }
 
-const UserSearch: React.FC<UserSearchProps> = ({ inputValue, handleInputChange, handleKeyDown, isDropdownOpen, filteredUsers, handleUserAction, setDropdownOpen, focusedUserIndex }) => (
+const UserSearch: React.FC<UserSearchProps> = ({ searchQuery, handleInputChange, handleKeyDown, isDropdownOpen, matchedUsers, handleUserAction, setDropdownOpen, focusedUserIndex }) => (
   <div>
     <input
       className="outline outline-0"
       type="text"
       placeholder="Add new user..."
-      value={inputValue}
+      value={searchQuery}
       onChange={handleInputChange}
       onKeyDown={handleKeyDown}
       onClick={() => setDropdownOpen(true)}
     />
     {isDropdownOpen && (
       <ul className="bg-white border rounded shadow-2xl max-h-80 overflow-auto absolute">
-        {filteredUsers.map((user, index) => (
+        {matchedUsers.map((user, index) => (
           <li
             key={user.id}
             className={`px-6 font-sans text-sm py-2 cursor-pointer transition duration-300 hover:bg-gray-200 flex items-center space-x-4 ${

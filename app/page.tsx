@@ -18,7 +18,6 @@ export default function Home() {
   );
   const [focusedUserIndex, setFocusedUserIndex] = useState(-1);
 
-
   useEffect(() => {
     setMatchedUsers(users);
   }, [users]);
@@ -36,11 +35,15 @@ export default function Home() {
     }
     else if (isDropdownOpen) {
       if (e.key === "ArrowDown") {
-        setFocusedUserIndex((prevIndex) =>
-          Math.min(prevIndex + 1, matchedUsers.length - 1)
-        );
+        setFocusedUserIndex((prevIndex) => {
+          const nextIndex = prevIndex + 1;
+          return nextIndex === matchedUsers.length ? 0 : nextIndex;
+        });
       } else if (e.key === "ArrowUp") {
-        setFocusedUserIndex((prevIndex) => Math.max(prevIndex - 1, -1));
+        setFocusedUserIndex((prevIndex) => {
+          const previousIndex = prevIndex - 1;
+          return previousIndex === -1 ? matchedUsers.length - 1 : previousIndex;
+        });
       } else if (e.key === "Enter" && focusedUserIndex !== -1) {
         handleUserAction(matchedUsers[focusedUserIndex], "add");
       }
@@ -93,11 +96,11 @@ export default function Home() {
             lastSelectedIndex={lastSelectedIndex}
           />
           <UserSearch
-            inputValue={searchQuery}
+            searchQuery={searchQuery}
             handleInputChange={handleInputChange}
             handleKeyDown={handleKeyDown}
             isDropdownOpen={isDropdownOpen}
-            filteredUsers={matchedUsers}
+            matchedUsers={matchedUsers}
             handleUserAction={handleUserAction}
             setDropdownOpen={setDropdownOpen}
             focusedUserIndex={focusedUserIndex}
