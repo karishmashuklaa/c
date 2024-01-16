@@ -22,7 +22,11 @@ export default function Home() {
   }, [users]);
 
   const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === "Backspace") {
+    if (e.key === "Escape") {
+      setDropdownOpen(false);
+    } else if (e.key === "Enter" && isDropdownOpen && matchedUsers.length > 0) {
+      handleUserAction(matchedUsers[0], "add"); 
+    } else if (e.key === "Backspace") {
       setBackspaceCount((prevCount) => prevCount + 1);
       if ((backspaceCount + 1) % 2 === 0) {
         setSelectedUsers((prevUsers) => prevUsers.slice(0, -1));
