@@ -6,7 +6,6 @@ import { userList } from "@/data";
 import Container from "@/components/Container";
 import UserSearch from "@/components/Search";
 import UserList from "@/components/User";
-import Image from "next/image";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState<string>("");
