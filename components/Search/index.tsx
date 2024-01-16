@@ -42,8 +42,8 @@ const UserSearch: React.FC<UserSearchProps> = ({ inputValue, handleInputChange, 
               alt="avatar"
             />
            <div className="flex justify-content-between items-start">
-            <p className="pl-4 px-2">{user.name}</p>
-            <p className="text-gray-500 px-2 text-justify">{user.email}</p>
+            <p className="pl-2 px-2">{user.name}</p>
+            <p className="text-gray-500 px-2">{user.email}</p>
           </div>
           </li>
         ))}
