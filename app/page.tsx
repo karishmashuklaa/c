@@ -34,19 +34,29 @@ export default function Home() {
       }
     }
     else if (isDropdownOpen) {
-      if (e.key === "ArrowDown") {
+      if (["ArrowDown", "ArrowUp"].includes(e.key)) {
         setFocusedUserIndex((prevIndex) => {
-          const nextIndex = prevIndex + 1;
-          return nextIndex === matchedUsers.length ? 0 : nextIndex;
+          let newIndex = prevIndex + (e.key === "ArrowDown" ? 1 : -1);
+    
+          // Circular navigation
+          if (newIndex < 0) {
+            newIndex = matchedUsers.length - 1;
+          } else if (newIndex >= matchedUsers.length) {
+            newIndex = 0;
+          }
+          
+          // Single-item list
+          if (matchedUsers.length === 1) {
+            newIndex = 0;
+          }
+
+          return newIndex;
         });
-      } else if (e.key === "ArrowUp") {
-        setFocusedUserIndex((prevIndex) => {
-          const previousIndex = prevIndex - 1;
-          return previousIndex === -1 ? matchedUsers.length - 1 : previousIndex;
-        });
-      } else if (e.key === "Enter" && focusedUserIndex !== -1) {
-        handleUserAction(matchedUsers[focusedUserIndex], "add");
-      }
+      } else if (e.key === "Enter") {
+        if (focusedUserIndex !== -1) {
+          handleUserAction(matchedUsers[focusedUserIndex], "add");
+        } 
+      } 
     }
   };
 
