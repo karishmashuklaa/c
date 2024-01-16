@@ -1,6 +1,6 @@
 # Chip Component
 
-View it live here: 
+View it live here: https://chip-drop.vercel.app/
 
 ### Local Setup
 1. Clone the repository
@@ -14,4 +14,9 @@ View it live here:
 3. Clicking on an item should turn it into a chip at the top, and the input field should adjust automatically.
 4. Once an item becomes a chip, it should no longer be in the list.
 5. Each chip has an "X" icon. Clicking it removes the chip and adds the item back to the list.
-6. When the input is blank and the user presses backspace, the last chip (for example, Nick Giannopoulos) should get highlighted and on again pressing backspace it should get deleted
+6. When the input is blank and the user presses backspace, the last chip (for example, Nick Giannopoulos) should get highlighted and on again pressing backspace it should get deleted.
+
+### Keyboard Shortcuts
+1. `Esc` to hide dropdown
+2. `Enter` to select first option from dropdown
+3. `Consecutive Backspaces` to delete last selected option
